@@ -1,4 +1,5 @@
 import pygame
+import math
 pygame.init();
 height = 1600
 width = 1000
@@ -47,7 +48,6 @@ while not GameExit:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:#event.type來決定是哪個事件
 			GameExit = True
-
 		if event.type == pygame.KEYDOWN:#處理key events(KEY_DOWN只是一個觸發,按下的瞬間才是事件)
 			if event.key == pygame.K_LEFT:
 				player1_velocity_x = -3
