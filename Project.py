@@ -1,5 +1,4 @@
 import pygame
-import math
 pygame.init();
 height = 1600
 width = 1000
@@ -14,8 +13,8 @@ blue = (0,0,255)
 
 class bullet:
 	def __init__(self, direction_x,direction_y,position_x,position_y):
-		self.direction_x = -direction_x/math.sqrt(direction_x**2 + direction_y**2)
-		self.direction_y = -direction_y/math.sqrt(direction_x**2 + direction_y**2)
+		self.direction_x = direction_x/20
+		self.direction_y = direction_y/20
 		self.position_x = int(position_x)
 		self.position_y = int(position_y)
 		self.stop = False
@@ -66,10 +65,15 @@ while not GameExit:
 				player2_velocity_y = -3#up is sub
 			if event.key == pygame.K_s:
 				player2_velocity_y = 3
+		if event.type == pygame.KEYUP:
+			if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+				player1_velocity_x = 0;
+				player1_velocity_y = 0;
+			if event.key == pygame.K_a or event.key == pygame.K_d or event.key == pygame.K_w or event.key == pygame.K_s:
+				player2_velocity_x = 0;
+				player2_velocity_y = 0;
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			mouse_x,mouse_y = pygame.mouse.get_pos()
-			print('mouse_x,mouse_Y',mouse_x,mouse_y)
-			print('player1 x ,y',player1_x,player1_y)
 			bullet_array.append(bullet(mouse_x-player1_x,mouse_y-player1_y,player1_x,player1_y))
 	player1_x += player1_velocity_x
 	player1_y += player1_velocity_y
